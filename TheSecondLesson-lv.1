@@ -1,0 +1,26 @@
+func (p *person ) say01() {
+	fmt.Println(p.name, "居然酸东君的猫")
+}
+//真香怪
+func (p *person ) say02() {
+	fmt.Println(p.name, "说宁死也不碰你的饭。。。真香！")
+}
+func main(){
+	p := &person{
+		name: "老师好我叫何同学",
+		age:22,
+		gender:"male",
+	}
+	p.gugugu()
+	var r repeater
+	r=p
+	r.repeat("helloworld")
+	var s01 SourGrapes
+	s01=p
+    p.name= "林浔"
+    s01.say01()
+	var s02 SlapInFace
+	s02=p
+    p.name="王境泽"
+	s02.say02()
+}
