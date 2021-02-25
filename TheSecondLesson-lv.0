@@ -1,0 +1,13 @@
+package main
+
+import "fmt"
+
+type  Person struct {
+	name string
+	addr string
+	PhoneNumber string
+}
+func main() {
+p :=Person{"Lisa","cd","12345678910"}
+fmt.Println(p)
+}
