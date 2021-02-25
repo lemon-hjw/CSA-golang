@@ -1,0 +1,60 @@
+package main
+
+import "fmt"
+
+var (
+	likes int
+	collections int
+	coins int
+	answer string
+)
+type  author struct{
+	name string
+	vip bool
+	icon string
+	signature string
+    focus int
+}
+func operation01(){
+	fmt.Println("是否点赞？YES or NO")
+	fmt.Scanln(&answer)
+	if answer == "YES"{
+		likes++
+	}
+	fmt.Println("是否收藏？YES or NO")
+	fmt.Scanln(&answer)
+	if answer == "YES"{
+		collections++
+	}
+	fmt.Println("是否投币？YES or NO")
+	fmt.Scanln(&answer)
+	if answer == "YES"{
+		coins++
+	}
+	fmt.Println("赞：",likes,"收藏",collections,"投币",coins)
+}
+func operation02(){
+	likes++
+	collections++
+	coins++
+	fmt.Println("赞：",likes,"收藏",collections,"投币",coins)
+}
+
+func main() {
+	var answer string
+	p:=author{
+		"aki的坐标系",
+		 true,
+		 "金泰亨",
+		"征服golang",
+		104,
+	}
+	fmt.Printf("%+v",p)
+fmt.Println("是否想一键三连？YES or NO")
+	fmt.Scanln(&answer )
+if answer =="YES"{
+	operation02()
+}else{
+	operation01()
+}
+}
