@@ -1,0 +1,57 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+/*
+将要计算素数的数字放入通道
+*/
+func putNum(intChan chan int) {
+	for i := 2; i < 50000; i++ {
+		intChan <- i
+	}
+	close(intChan)
+}
+
+/*
+计算素数
+从通道里面取出数字,计算完毕所有的数字后,退出程序
+*/
+func calPrim(intChan chan int, exitChan chan bool) {
+	var flag bool
+	for {
+		num, ok := <-intChan
+		if !ok {
+			// 说明计算完毕了退出
+			break
+		}
+
+		flag = true
+		for i := 2; i < num; i++ {
+			if num%i == 0 {
+				flag = false
+				break
+			}
+		}
+
+		if flag {
+			fmt.Println(num)
+		}
+	}
+
+	// 一旦走到这里,说明所有素数计算完毕了
+	exitChan <- true
+}
+
+func main() {
+	var (
+		intChan chan int
+		exitChan chan bool
+	)
+	go putNum(intChan)
+	time.Sleep(3*time.Second )
+	calPrim(intChan , exitChan)
+
+}
